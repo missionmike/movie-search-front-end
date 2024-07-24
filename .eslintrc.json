@@ -1,3 +1,7 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    // Console can be used during development, but should be removed in commits.
+    "no-console": "error"
+  }
 }
