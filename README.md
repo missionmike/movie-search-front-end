@@ -60,3 +60,10 @@ latest versions:
 For NextJS, I plan to use latest Node LTS (v20.x). I don't expect to use many of
 the SSR features of NextJS for this project, but I'm currently most familiar
 with NextJS so it will help me get this going faster.
+
+### Jest Tests and CI
+
+I included some basic testing with Jest in this repository. Time allowing, I
+would ensure all components, hooks, and helpers (etc.) is covered well.
+Additionally, I would ensure that linting and testing is automatically run in a
+CI process with GitHub Actions for pull requests and prior to deployments.
