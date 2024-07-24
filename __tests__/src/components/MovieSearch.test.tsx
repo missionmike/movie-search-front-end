@@ -9,15 +9,6 @@ jest.mock("@tanstack/react-query", () => ({
 }));
 
 describe("MovieSearch", () => {
-  const moviesResponse: MoviesResponse = {
-    movies: {
-      nodes: [
-        { title: "Movie 1", genres: [{ title: "Genre 1" }] },
-        { title: "Movie 2", genres: [{ title: "Genre 2" }] },
-      ],
-    },
-  };
-
   it("renders without crashing", () => {
     (useQuery as jest.Mock).mockReturnValue({
       data: null,
@@ -70,17 +61,56 @@ describe("MovieSearch", () => {
   });
 
   it("displays data when available", async () => {
+    const moviesResponse: MoviesResponse = {
+      movies: {
+        nodes: [
+          {
+            title: "Movie 1",
+            posterUrl: null,
+            directors: ["Director 1"],
+            writers: ["Writer 1"],
+            datePublished: "2021-01-01",
+            ratingValue: 5,
+            summary: "Summary 1",
+            genres: [{ title: "Genre 1" }],
+          },
+          {
+            title: "Movie 2",
+            posterUrl: null,
+            directors: ["Director 2"],
+            writers: ["Writer 2"],
+            datePublished: "2021-01-01",
+            ratingValue: 5,
+            summary: "Summary 2",
+            genres: [{ title: "Genre 2" }, { title: "Genre 3" }],
+          },
+        ],
+      },
+    };
+
     (useQuery as jest.Mock).mockReturnValue({
       data: moviesResponse,
       status: "success",
     });
+
     render(<MovieSearch />);
-    await waitFor(() =>
-      expect(screen.getByText(/Movie 1/i)).toBeInTheDocument(),
-    );
-    await waitFor(() =>
-      expect(screen.getByText(/Movie 2/i)).toBeInTheDocument(),
-    );
+
+    const expectedText = [
+      "Movie 1",
+      "Genre 1",
+      "Movie 2",
+      "Genre 2",
+      "Summary 1",
+      "Summary 2",
+    ];
+    await waitFor(async () => {
+      expectedText.forEach((text) =>
+        expect(screen.getByText(new RegExp(text, "i"))).toBeInTheDocument(),
+      );
+
+      // We're only displaying the FIRST genre, so we should NOT see Genre 3.
+      expect(screen.queryByText(/Genre 3/i)).toBeNull();
+    });
   });
 
   it("displays no data when empty", async () => {
