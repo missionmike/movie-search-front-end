@@ -3,6 +3,15 @@ import request from "graphql-request";
 import { useBearerToken } from "./useBearerToken";
 import { useQuery } from "@tanstack/react-query";
 
+/**
+ * The useApi hook is a wrapper that handles the API call to the
+ * GraphQL endpoint. It also handles the token acquisition and
+ * loading state.
+ *
+ * @param query the query to run against the API.
+ * @param variables the variables to pass to the query.
+ * @returns the data, error, and loading state of the API call.
+ */
 export const useApi = <T>({
   query,
   variables = {},
