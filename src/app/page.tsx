@@ -14,7 +14,6 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <h1 className="text-4xl font-bold">Welcome to Movie Search</h1>
         <MovieSearch />
-        <p className="text-lg">Search for your favorite movies!</p>
       </main>
     </QueryProvider>
   );
