@@ -11,6 +11,16 @@ Checkout this repository and run the following:
 2. `npm ci` to install dependencies per `package-lock.json`
 3. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
+## Testing
+
+To test with Jest, run `npm run test`.
+
+During development, if a snapshot needs to be update, `npm run test:update` will
+update all snapshots.
+
+The HTML coverage report can generated with `npm run test:coverage` and viewed
+in the `coverage/lcov-report/index.html` file.
+
 ## Decision History
 
 ### Initial Setup
