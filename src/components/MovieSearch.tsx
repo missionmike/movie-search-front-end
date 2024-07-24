@@ -9,21 +9,11 @@ interface Movie {
   }[];
 }
 
-interface Movies {
+export interface MoviesResponse {
   movies: {
     nodes: Movie[];
   };
 }
-
-/**
- * This component is a container for the movie search component, to
- * provide a consistent layout.
- */
-const MovieSearchContainer: FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  return <div className="p-4 bg-white">{children}</div>;
-};
 
 /**
  * This component fetches and displays a list of movies based on
@@ -31,24 +21,26 @@ const MovieSearchContainer: FC<{ children: React.ReactNode }> = ({
  *
  * @returns {React.ReactNode} the movie search component.
  */
-export const MovieSearch = () => {
-  const { data, error, isLoading, loadingMessage } = useApi<Movies>({
+export const MovieSearch: FC = () => {
+  const { data, error, isLoading, loadingMessage } = useApi<MoviesResponse>({
     query: GET_MOVIES,
   });
 
   if (isLoading) {
-    return <MovieSearchContainer>{loadingMessage}</MovieSearchContainer>;
+    return <div>{loadingMessage}</div>;
   }
 
   if (error) {
-    return <MovieSearchContainer>Error: {error.message}</MovieSearchContainer>;
+    return <div>Error: {error.message}</div>;
   }
 
-  return data ? (
-    <MovieSearchContainer>
+  if (!data?.movies?.nodes?.length) return <div>No movies found.</div>;
+
+  return (
+    <div className="p-4 bg-white">
       {data.movies.nodes.map((movie) => {
         return <div key={movie.title}>{movie.title}</div>;
       })}
-    </MovieSearchContainer>
-  ) : null;
+    </div>
+  );
 };

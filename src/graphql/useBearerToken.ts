@@ -1,7 +1,7 @@
 import { apiEndpoint } from "./endpoints";
 import { useQuery } from "@tanstack/react-query";
 
-interface Token {
+export interface TokenResponse {
   token: string;
 }
 
@@ -20,7 +20,7 @@ export const useBearerToken = () => {
     return res.json();
   };
 
-  const { data, error, isLoading } = useQuery<Token>({
+  const { data, error, isLoading } = useQuery<TokenResponse>({
     queryKey: ["bearerToken"],
     queryFn: getBearerToken,
     retry: 2,
