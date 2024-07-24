@@ -7,11 +7,11 @@ export const useBearerToken = () => {
     return res.json();
   };
 
-  const { data } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["bearerToken"],
     queryFn: getBearerToken,
     retry: 2,
   });
 
-  return data?.token;
+  return { token: data?.token, tokenError: error, loadingToken: isLoading };
 };

@@ -10,7 +10,7 @@ export const useApi = <T>({
   query: string;
   variables?: object;
 }) => {
-  const token = useBearerToken();
+  const { token, tokenError, loadingToken } = useBearerToken();
 
   const { data, error, isLoading } = useQuery<T>({
     queryKey: ["api", query, variables],
@@ -22,5 +22,14 @@ export const useApi = <T>({
     enabled: !!token, // Only run the query if the token is available.
   });
 
-  return { data, error, isLoading };
+  const isApiOrTokenLoading = isLoading || loadingToken;
+  const isApiOrTokenError = error || tokenError;
+  const loadingMessage = loadingToken ? "Acquiring token..." : "Loading...";
+
+  return {
+    data,
+    error: isApiOrTokenError,
+    isLoading: isApiOrTokenLoading,
+    loadingMessage,
+  };
 };
