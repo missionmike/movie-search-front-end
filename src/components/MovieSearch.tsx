@@ -1,9 +1,16 @@
 import { FC } from "react";
 import { GET_MOVIES } from "@/graphql/queries/getMovies";
+import { MovieTile } from "./MovieTile";
 import { useApi } from "@/graphql/useApi";
 
-interface Movie {
+export interface Movie {
   title: string;
+  datePublished: string;
+  ratingValue: number;
+  directors: string[];
+  writers: string[];
+  posterUrl: string | null;
+  summary: string | null;
   genres: {
     title: string;
   }[];
@@ -37,9 +44,9 @@ export const MovieSearch: FC = () => {
   if (!data?.movies?.nodes?.length) return <div>No movies found.</div>;
 
   return (
-    <div className="p-4 bg-white">
+    <div className="p-4 mt-4 bg-white grid grid-cols-5 gap-4">
       {data.movies.nodes.map((movie) => {
-        return <div key={movie.title}>{movie.title}</div>;
+        return <MovieTile key={movie.title} {...movie} />;
       })}
     </div>
   );

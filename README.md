@@ -21,6 +21,21 @@ update all snapshots.
 The HTML coverage report can generated with `npm run test:coverage` and viewed
 in the `coverage/lcov-report/index.html` file.
 
+## Project Highlights
+
+## My Favorite Parts
+
+## Given More Time
+
+Given more time, I would improve on the following items.
+
+### Jest Tests and CI
+
+I included some basic testing with Jest in this repository. Time allowing, I
+would ensure all components, hooks, and helpers (etc.) is covered well.
+Additionally, I would ensure that linting and testing is automatically run in a
+CI process with GitHub Actions for pull requests and prior to deployments.
+
 ## Decision History
 
 ### Initial Setup
@@ -61,9 +76,16 @@ For NextJS, I plan to use latest Node LTS (v20.x). I don't expect to use many of
 the SSR features of NextJS for this project, but I'm currently most familiar
 with NextJS so it will help me get this going faster.
 
-### Jest Tests and CI
+### Progress
 
-I included some basic testing with Jest in this repository. Time allowing, I
-would ensure all components, hooks, and helpers (etc.) is covered well.
-Additionally, I would ensure that linting and testing is automatically run in a
-CI process with GitHub Actions for pull requests and prior to deployments.
+#### Minimum Requirements
+
+As a user,
+
+- [ ] I can search for movies and see a paginated list of results
+- [ ] I can filter search results by genre
+- [ ] I can navigate through the next and previous pages of the paginated
+      results
+- [ ] I see the total count of search results
+- [ ] I see notable information for each search result, such as the summary,
+      poster, duration, rating, etc.
