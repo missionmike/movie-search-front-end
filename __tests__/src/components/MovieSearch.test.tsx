@@ -1,8 +1,15 @@
-import { MovieSearch, MoviesResponse } from "@/components/MovieSearch";
 import { render, screen, waitFor } from "@testing-library/react";
 
+import { MovieSearch } from "@/components/MovieSearch/MovieSearch";
+import { MoviesResponse } from "@/graphql/queries/getMovies";
 import { TokenResponse } from "@/graphql/useBearerToken";
 import { useQuery } from "@tanstack/react-query";
+
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
+  useSearchParams: jest.fn(),
+}));
 
 jest.mock("@tanstack/react-query", () => ({
   useQuery: jest.fn(),
@@ -85,6 +92,7 @@ describe("MovieSearch", () => {
             genres: [{ title: "Genre 2" }, { title: "Genre 3" }],
           },
         ],
+        pagination: { page: 1, totalPages: 1 },
       },
     };
 

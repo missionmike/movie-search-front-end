@@ -1,6 +1,6 @@
 "use client";
 
-import { MovieSearch } from "@/components/MovieSearch";
+import { MovieSearch } from "@/components/MovieSearch/MovieSearch";
 import { QueryProvider } from "@/context/QueryProvider";
 
 /**
