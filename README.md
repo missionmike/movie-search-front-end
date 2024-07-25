@@ -86,6 +86,7 @@ As a user,
 - [ ] I can filter search results by genre
 - [x] I can navigate through the next and previous pages of the paginated
       results
-- [x] I see the total count of search results
+- [x] I see the total count of search results (note: we see total number of
+      pages of search results, not total number of movies)
 - [x] I see notable information for each search result, such as the summary,
       poster, duration, rating, etc.

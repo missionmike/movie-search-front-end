@@ -6,7 +6,8 @@ import { Movie } from "@/graphql/queries/getMovies";
  * This component displays a single movie tile with details.
  *
  * Time allowing, I would refactor this component to extract
- * its parts into testable subcomponents.
+ * its parts into testable subcomponents, to help ensure that
+ * behavior and display is consistent and easily maintainable.
  *
  * @param {Movie} props the movie object to display.
  * @returns {React.ReactNode} the movie tile component.
