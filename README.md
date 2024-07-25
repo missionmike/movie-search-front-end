@@ -82,10 +82,10 @@ with NextJS so it will help me get this going faster.
 
 As a user,
 
-- [ ] I can search for movies and see a paginated list of results
+- [x] I can search for movies and see a paginated list of results
 - [ ] I can filter search results by genre
-- [ ] I can navigate through the next and previous pages of the paginated
+- [x] I can navigate through the next and previous pages of the paginated
       results
-- [ ] I see the total count of search results
-- [ ] I see notable information for each search result, such as the summary,
+- [x] I see the total count of search results
+- [x] I see notable information for each search result, such as the summary,
       poster, duration, rating, etc.
