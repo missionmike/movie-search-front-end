@@ -10,8 +10,9 @@ import { useDebouncedCallback } from "use-debounce";
  * @returns {React.ReactNode} the movie search component.
  */
 export const MovieSearchFields: FC<{
-  setSearchTerm: React.Dispatch<string>;
-}> = ({ setSearchTerm }) => {
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}> = ({ setSearchTerm, setPage }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -33,6 +34,7 @@ export const MovieSearchFields: FC<{
       setSearchTerm("");
     }
 
+    setPage(1); // Reset to first page on search term change.
     router.replace(`${pathname}?${params.toString()}`);
   }, 300);
 

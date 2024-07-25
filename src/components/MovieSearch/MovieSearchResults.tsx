@@ -10,11 +10,11 @@ import { useApi } from "@/graphql/useApi";
  *
  * @returns {React.ReactNode} the movie search component.
  */
-export const MovieSearchResults: FC<{ searchTerm: string }> = ({
-  searchTerm,
-}) => {
-  const [page, setPage] = useState(1);
-
+export const MovieSearchResults: FC<{
+  searchTerm: string;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}> = ({ searchTerm, page, setPage }) => {
   const { data, error, isLoading, loadingMessage } = useApi<MoviesResponse>({
     query: GET_MOVIES,
     variables: {

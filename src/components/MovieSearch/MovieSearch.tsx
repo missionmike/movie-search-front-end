@@ -12,12 +12,20 @@ import { MovieSearchResults } from "./MovieSearchResults";
  * @returns {React.ReactNode} the movie search component.
  */
 export const MovieSearch: FC = () => {
+  // I'm using state for this component to manage the search term and page.
+  // If the component grows to be more complex, I would consider using React
+  // Context or a state management library.
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
 
   return (
     <>
-      <MovieSearchFields setSearchTerm={setSearchTerm} />
-      <MovieSearchResults searchTerm={searchTerm} />
+      <MovieSearchFields setSearchTerm={setSearchTerm} setPage={setPage} />
+      <MovieSearchResults
+        searchTerm={searchTerm}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };
