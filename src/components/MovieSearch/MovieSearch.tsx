@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, Suspense, useState } from "react";
 
 import { MovieSearchFields } from "./MovieSearchFields";
 import { MovieSearchResults } from "./MovieSearchResults";
@@ -20,7 +20,9 @@ export const MovieSearch: FC = () => {
 
   return (
     <>
-      <MovieSearchFields setSearchTerm={setSearchTerm} setPage={setPage} />
+      <Suspense>
+        <MovieSearchFields setSearchTerm={setSearchTerm} setPage={setPage} />
+      </Suspense>
       <MovieSearchResults
         searchTerm={searchTerm}
         page={page}
