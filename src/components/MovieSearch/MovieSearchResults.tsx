@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
 import { GET_MOVIES, MoviesResponse } from "@/graphql/queries/getMovies";
 
+import { FC } from "react";
 import { MovieTile } from "./MovieTile";
 import { useApi } from "@/graphql/useApi";
 
@@ -12,14 +12,16 @@ import { useApi } from "@/graphql/useApi";
  */
 export const MovieSearchResults: FC<{
   searchTerm: string;
+  genreTitle: string;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-}> = ({ searchTerm, page, setPage }) => {
+}> = ({ searchTerm, genreTitle, page, setPage }) => {
   const { data, error, isLoading, loadingMessage } = useApi<MoviesResponse>({
     query: GET_MOVIES,
     variables: {
       where: {
         search: searchTerm,
+        genre: genreTitle,
       },
       pagination: {
         perPage: 10,
@@ -55,6 +57,12 @@ export const MovieSearchResults: FC<{
           return <MovieTile key={movie.title} {...movie} />;
         })}
       </div>
+      {/**
+       * This pagination section is a bit simplistic. If I had more time,
+       * I would consider adding a "jump to page" input. I would also extract
+       * this pagination section into its own component, to make it more testable
+       * and maintainable.
+       */}
       <div className="p-4 mt-4 flex justify space-between">
         <span className="mr-4" onClick={() => handlePagination("prev")}>
           Previous

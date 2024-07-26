@@ -23,7 +23,32 @@ in the `coverage/lcov-report/index.html` file.
 
 ## Project Highlights
 
+### Testing and Linting Support
+
+This project was initialized with shared contribution in mind, including a git
+hook for linting. Additionally, support is added for Jest w/ TypeScript to help
+ensure consistency with code behavior and outcome.
+
+### React Query
+
+React Query (Tanstack Query) was used to help cache data upon retrieval. The
+data only invalidates and re-fetches if a state key changes.
+
+### Token Authentication
+
+The initial request to fetch a token for authenticate the user and allow them to
+access the API is cached after page load. If the token expires after a certain
+time, we could improve the `useApi` hook to attempt to refetch a new token if it
+encounters a `401` response from the API.
+
 ## My Favorite Parts
+
+I'm fond of the wrapper around `useQuery` and its ease of use (the `useApi`
+hook).
+
+This project is my first time using the `<Suspense />` component, so I'm
+learning a bit there. I like the improvements to the routing, and the new hooks
+to `useSearchParams()`, etc. available with NextJS.
 
 ## Given More Time
 
@@ -35,6 +60,33 @@ I included some basic testing with Jest in this repository. Time allowing, I
 would ensure all components, hooks, and helpers (etc.) is covered well.
 Additionally, I would ensure that linting and testing is automatically run in a
 CI process with GitHub Actions for pull requests and prior to deployments.
+
+### Organization
+
+There's room for further code extraction and component separation. Given more
+time, I would improve this.
+
+### TypeScript Improvements
+
+I've been curious about [zod](https://github.com/colinhacks/zod), so I might
+take some time to validate data after fetch.
+
+Additionally, I'd look into auto-generating the type definitions for queries and
+API data responses using a 3rd-party package, to avoid the manual maintenance of
+adding and updating types for every kind of query response.
+
+### Styling
+
+I went bare-minimum on the CSS and styling here. I haven't used Tailwind in a
+long time, so I thought I'd give that a shot again... I don't remember many of
+the class names, so this ended up being a bit of a time-suck for me. I would
+have been able to develop some proper styles faster if I had just used standard
+CSS or SASS modules.
+
+### Query Filtering
+
+Given more time, I'd look into enabling a multi-select option for the genre
+filter.
 
 ## Decision History
 
@@ -83,7 +135,7 @@ with NextJS so it will help me get this going faster.
 As a user,
 
 - [x] I can search for movies and see a paginated list of results
-- [ ] I can filter search results by genre
+- [x] I can filter search results by genre
 - [x] I can navigate through the next and previous pages of the paginated
       results
 - [x] I see the total count of search results (note: we see total number of

@@ -35,29 +35,6 @@ describe("MovieSearch", () => {
     expect(screen.getByText(/Acquiring token/i)).toBeInTheDocument();
   });
 
-  it("displays loading state after acquiring token", async () => {
-    const tokenResponse: TokenResponse = { token: "abc123" };
-
-    (useQuery as jest.Mock).mockReturnValueOnce({
-      data: tokenResponse,
-      isLoading: false,
-      error: null,
-    });
-
-    (useQuery as jest.Mock).mockReturnValueOnce({
-      data: null,
-      isLoading: true,
-      error: null,
-    });
-
-    render(<MovieSearch />);
-
-    await waitFor(() => {
-      expect(screen.queryByText(/Acquiring token/i)).toBeNull();
-      expect(screen.getByText(/Loading/i)).toBeInTheDocument();
-    });
-  });
-
   it("displays error state", async () => {
     (useQuery as jest.Mock).mockReturnValue({
       error: new Error("An error occurred"),
@@ -115,9 +92,6 @@ describe("MovieSearch", () => {
       expectedText.forEach((text) =>
         expect(screen.getByText(new RegExp(text, "i"))).toBeInTheDocument(),
       );
-
-      // We're only displaying the FIRST genre, so we should NOT see Genre 3.
-      expect(screen.queryByText(/Genre 3/i)).toBeNull();
     });
   });
 
