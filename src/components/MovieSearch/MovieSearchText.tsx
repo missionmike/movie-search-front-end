@@ -4,12 +4,13 @@ import { FC } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 /**
- * This component provides the search input field for the movie search.
+ * This component provides the search text input field for the movie search.
  *
  * @param {React.Dispatch<string>} setSearchTerm the search term setter.
- * @returns {React.ReactNode} the movie search component.
+ * @param {React.Dispatch<number>} setPage the page setter.
+ * @returns {React.ReactNode} the movie search text input component.
  */
-export const MovieSearchFields: FC<{
+export const MovieSearchText: FC<{
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }> = ({ setSearchTerm, setPage }) => {
@@ -39,13 +40,11 @@ export const MovieSearchFields: FC<{
   }, 300);
 
   return (
-    <div className="mb-2 mt-10">
-      <input
-        type="text"
-        placeholder="Search for a movie..."
-        onInput={handleSearch}
-        className="text-black p-2 rounded-md"
-      />
-    </div>
+    <input
+      type="text"
+      placeholder="Search for a movie..."
+      onInput={handleSearch}
+      className="text-black p-2 rounded-md"
+    />
   );
 };

@@ -25,7 +25,10 @@ export const MovieTile: FC<Movie> = ({
   <div className="grid p-2 bg-slate-100 dark:bg-gray-600">
     <h2 className="text-lg">{title}</h2>
     <p className="mt-2 text-sm italic">
-      {genres.length > 0 ? genres[0].title : "No genre"} |
+      {genres.length > 0
+        ? genres.flatMap((genre) => genre.title).join(", ")
+        : "No genre"}{" "}
+      |
       {datePublished
         ? ` ${new Date(datePublished).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`
         : null}
