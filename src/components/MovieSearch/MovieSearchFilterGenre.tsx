@@ -4,7 +4,9 @@ import { FC } from "react";
 import { useApi } from "@/graphql/useApi";
 
 /**
- * This component fetches and displays a list of genres to filter.
+ * This component fetches and displays a list of genres to filter. This currently
+ * uses a single-select option, but could be expanded to allow multiple genres
+ * to be selected via checkboxes or other UI.
  *
  * @param {React.Dispatch<React.SetStateAction<string>>} setGenreTitle the genre title state setter.
  * @returns {React.ReactNode} the movie search genre filter component.

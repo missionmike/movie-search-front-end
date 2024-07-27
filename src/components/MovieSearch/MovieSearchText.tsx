@@ -5,6 +5,8 @@ import { useDebouncedCallback } from "use-debounce";
 
 /**
  * This component provides the search text input field for the movie search.
+ * It should debounce the input to prevent too many API calls, and then automatically
+ * update the URL query params to reflect the search term.
  *
  * @param {React.Dispatch<string>} setSearchTerm the search term setter.
  * @param {React.Dispatch<number>} setPage the page setter.

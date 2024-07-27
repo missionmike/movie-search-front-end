@@ -50,6 +50,53 @@ This project is my first time using the `<Suspense />` component, so I'm
 learning a bit there. I like the improvements to the routing, and the new hooks
 to `useSearchParams()`, etc. available with NextJS.
 
+## Questionable Decisions
+
+I made some choices here that could be questioned... here's a few that I'm aware
+of, but there are likely more. One of the benefits of working with a team is
+that I can almost always receive input and perspectives that I'd otherwise miss
+on my own.
+
+### Documentation
+
+I opted to use JSDoc-style comments on functions and hooks, etc. Most of the
+parameters are self-documenting via TypeScript and their variable names, however
+they are repeated in the JSDoc comments. This may seem redundant, but I find
+there's two reasons I like this approach:
+
+1. It's explicit and allows room for more details to be provided, such as the
+   "why" behind a choice.
+2. We could have a process to auto-generate HTML documentation for shared
+   knowledge. Yes, developers could just access the code itself to learn more
+   about it, but not everybody wants to clone the repository and install
+   dependencies in order to review a codebase. Or, perhaps the project needs to
+   be handed off entirely to a 3rd party, and having a robust documentation
+   generator is a bonus for the recipient.
+
+### Token Handling
+
+I chose to generate a new token via REST request on the initial page load. I
+didn't see details on how we should handle this token, or if it should expire,
+etc., so I opted for an option that would refresh it every time.
+
+An alternative option for a non-expiring Bearer token would be to generate it
+once, and then save it to the deployment environment variables for re-use in
+every deployment.
+
+The token is not sensitive, and can be found client-side via request headers.
+
+If we were concerned about the sensitivity of the token, we could set this up
+differently:
+
+1. Request would get sent to internal NextJS `/api/` route instead of the
+   3rd-party directly.
+2. The NextJS `/api/` route would only accept requests from the same domain.
+   These could be optionally secured by an additional client-side token that
+   gets saved with the deployment environment.
+3. The NextJS `/api/` endpoint relays the request to the 3rd-party endpoint,
+   using Node to attach the secret bearer token.
+4. The response from 3rd party gets relayed back to the client-side.
+
 ## Given More Time
 
 Given more time, I would improve on the following items.

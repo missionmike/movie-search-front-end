@@ -15,7 +15,10 @@ import { MovieSearchText } from "./MovieSearchText";
 export const MovieSearch: FC = () => {
   // I'm using state for this component to manage the search term and page.
   // If the component grows to be more complex, I would consider using React
-  // Context or a state management library.
+  // Context or a state management library. Typically, I start with local state
+  // and only move to a more complex solution if it's necessary. I think this current
+  // implementation is on the cusp of using context instead, because of how the state
+  // is shared between the search fields and the results.
   //
   // If I spent more time on this, I would check the URL queries for the
   // existence of a search query and/or genre filter. If they existed, I would

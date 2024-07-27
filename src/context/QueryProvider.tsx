@@ -5,7 +5,7 @@ import { FC } from "react";
 const queryClient = new QueryClient();
 
 /**
- * Query provider component to wrap the app in the query provider.
+ * Query provider component used to support the React Query library.
  *
  * @see https://tanstack.com/query/latest/docs/framework/react/quick-start
  *
