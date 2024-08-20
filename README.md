@@ -9,7 +9,8 @@ Checkout this repository and run the following:
 1. `nvm use` to use the latest Node specified in `.nvmrc`. Requires
    [nvm](https://github.com/nvm-sh/nvm) to be installed.
 2. `npm ci` to install dependencies per `package-lock.json`
-3. Open [http://localhost:3000](http://localhost:3000) with your browser.
+3. `npm run dev` to spin up the app locally.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## Testing
 
